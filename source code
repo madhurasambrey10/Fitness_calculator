@@ -1,0 +1,47 @@
+#include <iostream> 
+#include <string> 
+using namespace std; 
+class Person { 
+private: 
+    string name; 
+    double weight;   
+    double height;  
+ 
+public: 
+    void getInput() { 
+        cout << "Enter your name   : "<<endl;  
+        cin >> name; 
+        cout << "Enter weight (kg) : "<<endl;  
+        cin >> weight; 
+        cout << "Enter height (cm) : "<<endl;  
+        cin >> height; 
+    } 
+ 
+    string getName()   { return name;   } 
+    double getWeight() { return weight; } 
+    double getHeight() { return height; } 
+}; 
+class BMICalculator : public Person { 
+public: 
+    void calculate() { 
+        double h = getHeight() / 100.0;        
+        double bmi = getWeight() / (h * h);    
+ 
+        string result; 
+        if      (bmi < 18.5) result = "Underweight"; 
+        else if (bmi < 25.0) result = "Normal weight"; 
+        else if (bmi < 30.0) result = "Overweight"; 
+        else                 result = "Obese"; 
+ 
+        cout << "\n--- Result for " << getName() << endl; 
+        cout << "BMI    : " << bmi << endl; 
+        cout << "Status : " << result << endl; 
+    } 
+}; 
+ 
+int main() { 
+    BMICalculator person; 
+    person.getInput(); 
+    person.calculate(); 
+    return 0; 
+} 
